@@ -1305,8 +1305,9 @@ class Instagram
    * @return array
    *   followers data
    */
-  public function getUserFollowers($usernameId, $maxid = null)
+  public function getUserFollowers($usernameId = null, $maxid = null)
   {
+      if($usernameId == null) $usernameId = $this->username_id;
       return new FollowerResponse($this->http->request("friendships/$usernameId/followers/?max_id=$maxid&ig_sig_key_version=".Constants::SIG_KEY_VERSION."&rank_token=$this->rank_token")[1]);
   }
 
